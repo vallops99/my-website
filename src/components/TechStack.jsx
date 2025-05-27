@@ -1,12 +1,12 @@
 import React from 'react';
-import { ReactComponent as Python } from '../icons/python.svg';
-import { ReactComponent as FastAPI } from '../icons/fastapi.svg';
-import { ReactComponent as Django } from '../icons/django.svg';
-import { ReactComponent as Postgres } from '../icons/postgresql.svg';
-import { ReactComponent as Redis } from '../icons/redis.svg';
-import { ReactComponent as Docker } from '../icons/docker.svg';
-import { ReactComponent as AWS } from '../icons/aws.svg';
-import { ReactComponent as GRPC } from '../icons/grpc.svg';
+import Python from '../icons/python.jsx';
+import FastAPI from '../icons/fastapi.jsx';
+import Django from '../icons/django.jsx';
+import Postgres from '../icons/postgresql.jsx';
+import Redis from '../icons/redis.jsx';
+import Docker from '../icons/docker.jsx';
+import AWS from '../icons/aws.jsx';
+import GRPC from '../icons/grpc.jsx';
 
 const TechStack = () => {
   const technologies = [

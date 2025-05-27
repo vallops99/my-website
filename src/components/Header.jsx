@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as Github } from '../icons/github.svg';
-import { ReactComponent as Linkedin } from '../icons/linkedin.svg';
+import Github from '../icons/github.jsx';
+import Linkedin from '../icons/linkedin.jsx';
 
 const Header = () => {
   return (
@@ -18,7 +18,7 @@ const Header = () => {
           </ul>
           <div className="social-links">
             <a href="https://github.com/vallops99" target="_blank" rel="noopener noreferrer">
-              <Github />
+              <Github className="tobefilled" />
             </a>
             <a href="https://linkedin.com/in/valerio-farrotti" target="_blank" rel="noopener noreferrer">
               <Linkedin />

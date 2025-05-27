@@ -11,11 +11,17 @@
       in
       {
         devShell = with pkgs; mkShell {
-          buildInputs = [ nodejs_24 pnpm_9 pre-commit ];
-          shellHook = ''
-            #!/usr/bin/env bash
-            pnpm install
-          '';
+          buildInputs = [
+            nodejs_24
+            pnpm_9
+            pre-commit
+            wrangler
+            importNpmLock.hooks.linkNodeModulesHook
+          ];
+          npmDeps = importNpmLock.buildNodeModules {
+            npmRoot = "${self}";
+            inherit nodejs;
+          };
         };
       }
     );

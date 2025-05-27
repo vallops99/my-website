@@ -1,4 +1,5 @@
 import React from 'react';
+import AboutMe from '../icons/aboutme';
 
 const About = () => {
   return (
@@ -6,7 +7,7 @@ const About = () => {
       <div className="container">
         <div className="about-content">
           <div className="about-image">
-            👨‍💻
+            <AboutMe />
           </div>
           <div className="about-text">
             <h2>About Me</h2>

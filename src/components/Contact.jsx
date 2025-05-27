@@ -1,7 +1,7 @@
 import React from 'react';
-import { ReactComponent as Github } from '../icons/github.svg';
-import { ReactComponent as Linkedin } from '../icons/linkedin.svg';
-import { ReactComponent as Email } from '../icons/email.svg';
+import Github from '../icons/github';
+import Linkedin from '../icons/linkedin';
+import Email from '../icons/email';
 
 const Contact = () => {
   return (
