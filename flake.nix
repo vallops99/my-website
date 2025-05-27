@@ -8,7 +8,7 @@
     utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-      in
+      in rec
       {
         devShell = with pkgs; mkShell {
           buildInputs = [
@@ -16,7 +16,6 @@
             pre-commit
             wrangler
             cloudflared
-            vite
             importNpmLock.hooks.linkNodeModulesHook
           ];
 
@@ -26,7 +25,7 @@
           };
 
           shellHook = ''
-            export PATH=${pkgs.wrangler}/bin:$PATH
+            export PATH=$PATH:${devShell.npmDeps}/node_modules/.bin
           '';
         };
       }

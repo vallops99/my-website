@@ -14,7 +14,7 @@ const Contact = () => {
             challenging backend systems and help bring your ideas to life.
           </p>
           <div className="contact-links">
-            <a href="mailto:valerio.farrotti@gmail.com">
+            <a href="mailto:valerio@farrotti.com">
                 <Email />
             </a>
             <a href="https://linkedin.com/in/valerio-farrotti" target="_blank" rel="noopener noreferrer">
