@@ -1,3 +1,4 @@
 .direnv
 .envrc
 node_modules
+build
