@@ -419,6 +419,10 @@ a:hover .tobefilled {
   .hero-text h1 {
     font-size: 2.5rem;
   }
+
+  .hero-visual {
+    display: none;
+  }
   
   .about-content {
     grid-template-columns: 1fr;
