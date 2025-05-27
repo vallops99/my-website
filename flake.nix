@@ -13,15 +13,21 @@
         devShell = with pkgs; mkShell {
           buildInputs = [
             nodejs_24
-            pnpm_9
             pre-commit
             wrangler
+            cloudflared
+            vite
             importNpmLock.hooks.linkNodeModulesHook
           ];
+
           npmDeps = importNpmLock.buildNodeModules {
             npmRoot = "${self}";
             inherit nodejs;
           };
+
+          shellHook = ''
+            export PATH=${pkgs.wrangler}/bin:$PATH
+          '';
         };
       }
     );
