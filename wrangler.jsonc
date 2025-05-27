@@ -12,7 +12,14 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"routes": [
+		{
+			"pattern": "valerio.farrotti.com",
+			"custom_domain": true
+		}
+	],
+	"workers_dev": false
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

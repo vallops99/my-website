@@ -19,7 +19,7 @@ const Hero = () => {
             </p>
             <div className="cta-buttons">
               <a href="#contact" className="btn-primary">Get in Touch</a>
-              <a href="https://1drv.ms/b/c/f506cb84a4efc4b9/EW8tlu1wJqVHmgY0Hs7E2f0BPTnsgC32z9qVh7a5MZvD-w?e=luUEib" target="_blank" className="btn-secondary" rel="noopener noreferrer">Resume</a>
+              <a href="https://farrotti.com/resume.pdf" target="_blank" className="btn-secondary" rel="noopener noreferrer">Resume</a>
             </div>
           </div>
           <div className="hero-visual">
