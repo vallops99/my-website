@@ -18,6 +18,14 @@ export const hero = {
   secondary: { href: '#work', label: 'See my work' },
 };
 
+// Quick facts, taken from the offer terms and the Contact copy (#6).
+export const facts = [
+  { label: 'Where', value: 'Remote, based in Italy (CET)' },
+  { label: 'Languages', value: 'English & Italian' },
+  { label: 'Engagements', value: 'Fixed-scope or ongoing, direct or through your agency' },
+  { label: 'Reply time', value: 'Within two working days' },
+];
+
 export const offer = {
   heading: 'How I can help',
   types: [

@@ -1,6 +1,8 @@
 // PROTOTYPE (#10): "Which design system does the site use?"
-// Four design systems applied to the same decided content (#4–#7), on the existing `/` route, switchable via `?variant=A|B|C|D`
-// (and `?theme=light|dark`). Variants disagree on tokens, type, component shapes and layout density.
+// Round 2: three modern variants applied to the same decided content (#4–#7), on the existing `/` route, switchable via
+// `?variant=E|F|G` (and `?theme=light|dark`). Round 1 (A–D: Pico, editorial, technical, Radix) was rejected as "old" and lives in
+// commit e700998. Every variant here follows the rules in research/ui-ux-best-practices.md ("Implications for #10"):
+// one font family, 17–18px body, ≤70ch measure, ≥14px text, one accent, opaque header, light default + system dark, AA contrast.
 // Section order is provisional: #8 (Site structure) decides it after this one.
 // Dev only: src/index.jsx never loads this file in production builds.
 import React, { useEffect, useState } from 'react';
@@ -8,10 +10,9 @@ import PrototypeSwitcher from '../components/PrototypeSwitcher';
 import TokenSheet from './TokenSheet';
 
 export const variants = [
-  { key: 'A', name: 'Pico CSS, adopted', load: () => import('./VariantA.jsx') },
-  { key: 'B', name: 'Editorial, custom', load: () => import('./VariantB.jsx') },
-  { key: 'C', name: 'Technical, custom', load: () => import('./VariantC.jsx') },
-  { key: 'D', name: 'Radix Colors + Inter', load: () => import('./VariantD.jsx') },
+  { key: 'E', name: 'Bento', load: () => import('./VariantE.jsx') },
+  { key: 'F', name: 'Aurora split', load: () => import('./VariantF.jsx') },
+  { key: 'G', name: 'Precision list', load: () => import('./VariantG.jsx') },
 ];
 
 function applyTheme(theme) {
