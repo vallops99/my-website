@@ -1,34 +1,21 @@
-import React from 'react';
-import Github from '../icons/github';
-import Linkedin from '../icons/linkedin';
-import Email from '../icons/email';
+import { contact } from '../content';
 
-const Contact = () => {
-  return (
-    <section id="contact" className="contact">
-      <div className="container">
-        <div className="contact-content">
-          <h2>Let's Build Something Amazing Together</h2>
-          <p>
-            Ready to discuss your next project? I'm always excited to work on 
-            challenging backend systems and help bring your ideas to life.
-          </p>
-          <div className="contact-links">
-            <a href="mailto:valerio@farrotti.com">
-                <Email />
-            </a>
-            <a href="https://linkedin.com/in/valerio-farrotti" target="_blank" rel="noopener noreferrer">
-              <Linkedin />
-            </a>
-            <a href="https://github.com/vallops99" target="_blank" rel="noopener noreferrer">
-              <Github />
-            </a>
-          </div>
-          <a href="#home" className="btn-primary">Back to Top</a>
-        </div>
+const Contact = () => (
+  <section id="contact" className="contact" aria-labelledby="contact-h">
+    <div className="aurora aurora-low" aria-hidden="true" />
+    <div className="wrap">
+      <h2 id="contact-h">{contact.heading}</h2>
+      <p className="prose muted">{contact.body}</p>
+      <div className="actions">
+        <a className="btn" href={`mailto:${contact.email}`}>{contact.email}</a>
       </div>
-    </section>
-  );
-};
+      <ul className="links">
+        {contact.links.map((l) => (
+          <li key={l.href}><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
 
-export default Contact; 
+export default Contact;

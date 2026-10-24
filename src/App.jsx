@@ -1,25 +1,26 @@
-import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import TechStack from './components/TechStack';
-import Services from './components/Services';
-import About from './components/About';
+import Help from './components/Help';
+import MoreWork from './components/MoreWork';
+import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import './styles/globals.css';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Header />
-      <Hero />
-      <TechStack />
-      <Services />
-      <About />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <Help />
+        <MoreWork />
+        <Skills />
+        <Contact />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
-export default App; 
+export default App;

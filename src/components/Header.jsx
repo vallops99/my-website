@@ -1,33 +1,25 @@
-import React from 'react';
-import Github from '../icons/github.jsx';
-import Linkedin from '../icons/linkedin.jsx';
+import { nav } from '../content';
 
-const Header = () => {
-  return (
+const Header = () => (
+  <>
+    <a className="skip" href="#main">Skip to content</a>
     <header className="header">
-      <div className="container">
-        <nav className="nav">
-          <a href="#home" className="logo">
-            VF;
-          </a>
-          <ul className="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>    
-            <li><a href="#contact">Contact</a></li>
+      <div className="wrap header-in">
+        <a href="#top" className="logo">
+          <span className="mark" aria-hidden="true">VF</span>
+          <span className="logo-name">Valerio Farrotti</span>
+        </a>
+        <nav aria-label="Main">
+          <ul>
+            {nav.map((n) => (
+              <li key={n.href}><a href={n.href}>{n.label}</a></li>
+            ))}
           </ul>
-          <div className="social-links">
-            <a href="https://github.com/vallops99" target="_blank" rel="noopener noreferrer">
-              <Github className="tobefilled" />
-            </a>
-            <a href="https://linkedin.com/in/valerio-farrotti" target="_blank" rel="noopener noreferrer">
-              <Linkedin />
-            </a>
-          </div>
         </nav>
+        <a className="btn btn-secondary btn-sm mobile-only" href="#contact">Contact</a>
       </div>
     </header>
-  );
-};
+  </>
+);
 
 export default Header;
