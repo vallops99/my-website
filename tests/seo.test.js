@@ -27,6 +27,7 @@ describe('head tags', () => {
       expect(description.toLowerCase()).toContain(type.toLowerCase())
     }
     expect(html).toContain(`<link rel="canonical" href="${SITE}">`)
+    expect(meta(html, 'name', 'author')).toBe('Valerio Farrotti')
   })
 
   it('has Open Graph and Twitter card tags pointing at the 1200×630 image', () => {
