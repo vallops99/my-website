@@ -8,7 +8,8 @@ const ROOT_MARKER = /<div id="root">\s*<\/div>/
 
 // Renders the app to static HTML at build time and injects it into the client
 // bundle's index.html, so `vite build` alone produces the prerendered page.
-// Also preloads the hashed WOFF2 so text does not wait for the CSS to reveal it.
+// Also preloads the hashed WOFF2 so text does not wait for the CSS to reveal it, and adds
+// the JSON-LD and llms.txt built from the page copy (src/seo.js).
 function prerender() {
   let root
   let clientOutDir
@@ -33,6 +34,7 @@ function prerender() {
       })
       try {
         const { render } = await server.ssrLoadModule('/src/entry-server.jsx')
+        const { jsonLdScript, llmsTxt } = await server.ssrLoadModule('/src/seo.js')
         const file = resolve(clientOutDir, 'index.html')
         const html = readFileSync(file, 'utf8')
         if (!ROOT_MARKER.test(html)) throw new Error(`prerender: ${ROOT_MARKER} not found in index.html`)
@@ -43,8 +45,9 @@ function prerender() {
           file,
           html
             .replace(ROOT_MARKER, () => `<div id="root">${render()}</div>`)
-            .replace('</head>', () => `    ${preload}\n  </head>`),
+            .replace('</head>', () => `    ${preload}\n    ${jsonLdScript()}\n  </head>`),
         )
+        writeFileSync(resolve(clientOutDir, 'llms.txt'), llmsTxt())
         rendered = true
       } finally {
         await server.close()
