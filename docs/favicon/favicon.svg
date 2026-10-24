@@ -1,0 +1,9 @@
+<!-- Source of the favicons in public/ (favicon.ico, favicon-*.png, android-chrome-*.png, apple-touch-icon.png).
+     It is the header .mark scaled 16x: 32px square, radius-mark 10px, "VF" at 14px weight 750, on-accent white on accent violet.
+     Rendered with sharp (librsvg) and a fontconfig dir holding a static 750 weight TTF cut from
+     src/fonts/plus-jakarta-sans-latin-wght.woff2 (fontTools instancer). apple-touch-icon.png uses rx="0", since iOS
+     applies its own mask. Baseline sits at centre + half the cap height (745/1000 em). -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="160" fill="#6d28d9"/>
+  <text x="256" y="339" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="750" font-size="224" fill="#ffffff">VF</text>
+</svg>
