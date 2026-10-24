@@ -14,12 +14,12 @@ const btnStyle = {
   placeItems: 'center', background: 'rgba(0,0,0,.25)', padding: '0 10px', whiteSpace: 'nowrap',
 };
 
-export default function PrototypeSwitcher({ variants, current, theme, onTheme }) {
+export default function PrototypeSwitcher({ variants, current, theme, onTheme, param = 'variant' }) {
   const idx = Math.max(0, variants.findIndex((v) => v.key === current));
   const go = (delta) => {
     const next = variants[(idx + delta + variants.length) % variants.length];
     const params = new URLSearchParams(window.location.search);
-    params.set('variant', next.key);
+    params.set(param, next.key);
     // Full reload on purpose: each variant ships its own global CSS, and a reload keeps them from bleeding.
     window.location.search = params.toString();
   };
