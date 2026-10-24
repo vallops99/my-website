@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { createServer, defineConfig } from 'vite'
@@ -9,7 +10,8 @@ const ROOT_MARKER = /<div id="root">\s*<\/div>/
 // Renders the app to static HTML at build time and injects it into the client
 // bundle's index.html, so `vite build` alone produces the prerendered page.
 // Also preloads the hashed WOFF2 so text does not wait for the CSS to reveal it, and adds
-// the JSON-LD and llms.txt built from the page copy (src/seo.js).
+// the JSON-LD and llms.txt built from the page copy (src/seo.js). Links to og.png get a
+// content-hash version, so link-preview caches refetch the image when it changes.
 function prerender() {
   let root
   let clientOutDir
@@ -41,11 +43,13 @@ function prerender() {
         const font = readdirSync(resolve(clientOutDir, 'assets')).find((f) => f.endsWith('.woff2'))
         if (!font) throw new Error('prerender: no .woff2 found in the client bundle')
         const preload = `<link rel="preload" href="/assets/${font}" as="font" type="font/woff2" crossorigin>`
+        const ogVersion = createHash('sha256').update(readFileSync(resolve(clientOutDir, 'og.png'))).digest('hex').slice(0, 8)
         writeFileSync(
           file,
           html
             .replace(ROOT_MARKER, () => `<div id="root">${render()}</div>`)
-            .replace('</head>', () => `    ${preload}\n    ${jsonLdScript()}\n  </head>`),
+            .replace('</head>', () => `    ${preload}\n    ${jsonLdScript()}\n  </head>`)
+            .replaceAll('/og.png"', `/og.png?v=${ogVersion}"`),
         )
         writeFileSync(resolve(clientOutDir, 'llms.txt'), llmsTxt())
         rendered = true

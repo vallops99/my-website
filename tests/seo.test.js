@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import { beforeAll, describe, expect, it } from 'vitest'
 import { caseStudies, contact } from '../src/content.js'
 import { readBuilt, readPage, readPageText } from './helpers.js'
@@ -35,12 +36,15 @@ describe('head tags', () => {
     expect(meta(html, 'property', 'og:url')).toBe(SITE)
     expect(meta(html, 'property', 'og:title')).toBe('Valerio Farrotti · Freelance backend developer')
     expect(meta(html, 'property', 'og:description')).toBe(meta(html, 'name', 'description'))
-    expect(meta(html, 'property', 'og:image')).toBe(`${SITE}og.png`)
+    // Versioned by content hash, so link-preview caches (LinkedIn keeps images for days) refetch a new image.
+    const version = createHash('sha256').update(readBuilt('og.png', null)).digest('hex').slice(0, 8)
+    const image = `${SITE}og.png?v=${version}`
+    expect(meta(html, 'property', 'og:image')).toBe(image)
     expect(meta(html, 'property', 'og:image:width')).toBe('1200')
     expect(meta(html, 'property', 'og:image:height')).toBe('630')
     expect(meta(html, 'property', 'og:image:alt')).toBeTruthy()
     expect(meta(html, 'name', 'twitter:card')).toBe('summary_large_image')
-    expect(meta(html, 'name', 'twitter:image')).toBe(`${SITE}og.png`)
+    expect(meta(html, 'name', 'twitter:image')).toBe(image)
   })
 
   it('makes no Claim in the description that is not on the page', () => {
