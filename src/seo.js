@@ -28,7 +28,7 @@ export function jsonLd() {
     description: offer.terms,
     founder: { '@id': person['@id'] },
     address: { '@type': 'PostalAddress', addressCountry: 'IT' },
-    availableLanguage: ['English', 'Italian'],
+    contactPoint: { '@type': 'ContactPoint', contactType: 'sales', email: contact.email, availableLanguage: ['English', 'Italian'] },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: offer.heading,

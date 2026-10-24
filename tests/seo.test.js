@@ -56,7 +56,7 @@ describe('head tags', () => {
 })
 
 // Keys whose values are identifiers or machine-readable codes, not copy.
-const MACHINE_KEYS = new Set(['url', 'image', 'sameAs', 'email', 'addressCountry'])
+const MACHINE_KEYS = new Set(['url', 'image', 'sameAs', 'email', 'addressCountry', 'contactType'])
 
 function copyStrings(node, out = []) {
   if (Array.isArray(node)) node.forEach((n) => copyStrings(n, out))
@@ -92,7 +92,12 @@ describe('JSON-LD', () => {
     const person = graph.find((n) => n['@type'] === 'Person')
     expect(service.founder).toEqual({ '@id': person['@id'] })
     expect(service.address).toEqual({ '@type': 'PostalAddress', addressCountry: 'IT' })
-    expect(service.availableLanguage).toEqual(['English', 'Italian'])
+    expect(service.contactPoint).toEqual({
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: 'valerio@farrotti.com',
+      availableLanguage: ['English', 'Italian'],
+    })
     expect(service.description).toContain('Remote, based in Italy (CET)')
     expect(service.hasOfferCatalog.itemListElement.map((o) => o.itemOffered.name)).toEqual([
       'Build a new backend',
